@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CiTasks.Apis
+namespace JsonApiClient
 {
     public interface IApiResponse<T>
         where T : class

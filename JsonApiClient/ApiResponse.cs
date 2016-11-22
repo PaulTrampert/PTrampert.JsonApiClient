@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace CiTasks.Apis
+namespace JsonApiClient
 {
     public class ApiResponse<T> : IApiResponse<T>
         where T : class

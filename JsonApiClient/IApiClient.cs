@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace CiTasks.Apis
+namespace JsonApiClient
 {
     public interface IApiClient
     {
