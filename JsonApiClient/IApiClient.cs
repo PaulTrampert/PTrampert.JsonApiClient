@@ -6,21 +6,11 @@ namespace JsonApiClient
 {
     public interface IApiClient
     {
-        Task<IApiResponse<TResponse>> DeleteAsync<TResponse, TRequest>(string uri, TRequest data, IEnumerable<KeyValuePair<string, string>> queryData = null)
-            where TResponse : class
-            where TRequest : class;
+        Task<IApiResponse<TResponse>> DeleteAsync<TResponse>(string uri, object data = null, IEnumerable<KeyValuePair<string, string>> queryData = null) where TResponse : class;
         Task<IApiResponse<TResponse>> GetAsync<TResponse>(string uri, IEnumerable<KeyValuePair<string, string>> queryData = null) where TResponse : class;
-        Task<IApiResponse<TResponse>> RequestAsync<TResponse, TRequest>(HttpMethod httpMethod, string uri, TRequest data = null, IEnumerable<KeyValuePair<string, string>> queryData = null)
-            where TResponse : class
-            where TRequest : class;
-        Task<IApiResponse<TResponse>> PatchAsync<TResponse, TRequest>(string uri, TRequest data, IEnumerable<KeyValuePair<string, string>> queryData = null)
-            where TResponse : class
-            where TRequest : class;
-        Task<IApiResponse<TResponse>> PostAsync<TResponse, TRequest>(string uri, TRequest data, IEnumerable<KeyValuePair<string, string>> queryData = null)
-            where TResponse : class
-            where TRequest : class;
-        Task<IApiResponse<TResponse>> PutAsync<TResponse, TRequest>(string uri, TRequest data, IEnumerable<KeyValuePair<string, string>> queryData = null)
-            where TResponse : class
-            where TRequest : class;
+        Task<IApiResponse<TResponse>> PatchAsync<TResponse>(string uri, object data = null, IEnumerable<KeyValuePair<string, string>> queryData = null) where TResponse : class;
+        Task<IApiResponse<TResponse>> PostAsync<TResponse>(string uri, object data = null, IEnumerable<KeyValuePair<string, string>> queryData = null) where TResponse : class;
+        Task<IApiResponse<TResponse>> PutAsync<TResponse>(string uri, object data = null, IEnumerable<KeyValuePair<string, string>> queryData = null) where TResponse : class;
+        Task<IApiResponse<TResponse>> RequestAsync<TResponse>(HttpMethod httpMethod, string uri, IEnumerable<KeyValuePair<string, string>> queryData = null, object data = null) where TResponse : class;
     }
 }

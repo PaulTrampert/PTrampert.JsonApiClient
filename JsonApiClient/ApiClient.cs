@@ -22,12 +22,11 @@ namespace JsonApiClient
             this.jsonSettings = jsonSettings;
         }
 
-        public async Task<IApiResponse<TResponse>> RequestAsync<TResponse, TRequest>(
+        public async Task<IApiResponse<TResponse>> RequestAsync<TResponse>(
             HttpMethod httpMethod,
             string uri,
-            TRequest data = null,
-            IEnumerable<KeyValuePair<string, string>> queryData = null)
-            where TRequest : class
+            IEnumerable<KeyValuePair<string, string>> queryData = null,
+            object data = null)
             where TResponse : class
         {
             var finalUri = uri;
@@ -41,7 +40,15 @@ namespace JsonApiClient
                 request.Content = new StringContent(JsonConvert.SerializeObject(data, Formatting.None, jsonSettings), Encoding.UTF8, "application/json");
             }
             var response = await httpClient.SendAsync(request);
-            var content = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new ApiException(response); 
+            }
+            string content = null;
+            if (response.Content != null)
+            {
+                content = await response.Content.ReadAsStringAsync();
+            }
 
             return new ApiResponse<TResponse>
             {
@@ -53,35 +60,31 @@ namespace JsonApiClient
         public Task<IApiResponse<TResponse>> GetAsync<TResponse>(string uri, IEnumerable<KeyValuePair<string, string>> queryData = null)
             where TResponse : class
         {
-            return RequestAsync<TResponse, object>(HttpMethod.Get, uri, queryData: queryData);
+            return RequestAsync<TResponse>(HttpMethod.Get, uri, queryData: queryData);
         }
 
-        public Task<IApiResponse<TResponse>> PostAsync<TResponse, TRequest>(string uri, TRequest data, IEnumerable<KeyValuePair<string, string>> queryData = null)
+        public Task<IApiResponse<TResponse>> PostAsync<TResponse>(string uri, object data = null, IEnumerable<KeyValuePair<string, string>> queryData = null)
             where TResponse : class
-            where TRequest : class
         {
-            return RequestAsync<TResponse, object>(HttpMethod.Post, uri, data: data, queryData: queryData);
+            return RequestAsync<TResponse>(HttpMethod.Post, uri, data: data, queryData: queryData);
         }
 
-        public Task<IApiResponse<TResponse>> PutAsync<TResponse, TRequest>(string uri, TRequest data, IEnumerable<KeyValuePair<string, string>> queryData = null)
+        public Task<IApiResponse<TResponse>> PutAsync<TResponse>(string uri, object data = null, IEnumerable<KeyValuePair<string, string>> queryData = null)
             where TResponse : class
-            where TRequest : class
         {
-            return RequestAsync<TResponse, object>(HttpMethod.Put, uri, data: data, queryData: queryData);
+            return RequestAsync<TResponse>(HttpMethod.Put, uri, data: data, queryData: queryData);
         }
 
-        public Task<IApiResponse<TResponse>> PatchAsync<TResponse, TRequest>(string uri, TRequest data, IEnumerable<KeyValuePair<string, string>> queryData = null)
+        public Task<IApiResponse<TResponse>> PatchAsync<TResponse>(string uri, object data = null, IEnumerable<KeyValuePair<string, string>> queryData = null)
             where TResponse : class
-            where TRequest : class
         {
-            return RequestAsync<TResponse, object>(new HttpMethod("PATCH"), uri, data: data, queryData: queryData);
+            return RequestAsync<TResponse>(new HttpMethod("PATCH"), uri, data: data, queryData: queryData);
         }
 
-        public Task<IApiResponse<TResponse>> DeleteAsync<TResponse, TRequest>(string uri, TRequest data, IEnumerable<KeyValuePair<string, string>> queryData = null)
+        public Task<IApiResponse<TResponse>> DeleteAsync<TResponse>(string uri, object data = null, IEnumerable<KeyValuePair<string, string>> queryData = null)
             where TResponse : class
-            where TRequest : class
         {
-            return RequestAsync<TResponse, object>(HttpMethod.Delete, uri, data: data, queryData: queryData);
+            return RequestAsync<TResponse>(HttpMethod.Delete, uri, data: data, queryData: queryData);
         }
     }
 }

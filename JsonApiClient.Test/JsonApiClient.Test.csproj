@@ -2,7 +2,8 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="**\*.cs" />
@@ -17,7 +18,7 @@
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk">
-      <Version>15.0.0-preview-20161122-02</Version>
+      <Version>15.0.0-preview-20161123-03</Version>
     </PackageReference>
     <PackageReference Include="xunit">
       <Version>2.2.0-beta4-build3444</Version>
