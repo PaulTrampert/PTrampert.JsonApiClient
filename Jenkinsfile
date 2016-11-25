@@ -1,0 +1,3 @@
+nugetPipeline {
+	project = 'JsonApiClient'
+}
