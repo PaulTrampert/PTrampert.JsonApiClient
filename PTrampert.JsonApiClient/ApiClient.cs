@@ -16,7 +16,7 @@ namespace PTrampert.JsonApiClient
 
         private JsonSerializerSettings jsonSettings;
 
-        public ApiClient(HttpClient httpClient = null, JsonSerializerSettings jsonSettings = null)
+        public ApiClient(HttpClient httpClient, JsonSerializerSettings jsonSettings = null)
         {
             this.httpClient = httpClient;
             this.jsonSettings = jsonSettings;
