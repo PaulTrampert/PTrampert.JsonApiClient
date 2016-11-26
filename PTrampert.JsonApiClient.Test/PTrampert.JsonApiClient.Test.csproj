@@ -26,8 +26,5 @@
       <Version>2.2.0-beta4-build1194</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JsonApiClient\PTrampert.JsonApiClient.csproj" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
