@@ -1,6 +1,6 @@
 nugetPipeline {
 	project = 'PTrampert.JsonApiClient'
 	isOpenSource = true
-	nugetCredentialsId = "progetApiKey"
-	nugetServer = "https://proget.ptrampert.com/nuget/Default"
+	nugetCredentialsId = "nugetApiKey"
+	nugetServer = "https://api.nuget.org/v3/index.json"
 }
