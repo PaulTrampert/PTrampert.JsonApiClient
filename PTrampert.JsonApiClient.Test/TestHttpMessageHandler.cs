@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace JsonApiClient.Test
+namespace PTrampert.JsonApiClient.Test
 {
     public class TestHttpMessageHandler : HttpMessageHandler
     {

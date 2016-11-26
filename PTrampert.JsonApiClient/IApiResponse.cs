@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace JsonApiClient
+namespace PTrampert.JsonApiClient
 {
     public interface IApiResponse<T>
         where T : class

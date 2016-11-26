@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace JsonApiClient.Test.ApiClientTests
+namespace PTrampert.JsonApiClient.Test.ApiClientTests
 {
     public class WhenRequestingAsync
     {

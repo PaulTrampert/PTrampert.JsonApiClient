@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace JsonApiClient
+namespace PTrampert.JsonApiClient
 {
     public interface IApiClient
     {

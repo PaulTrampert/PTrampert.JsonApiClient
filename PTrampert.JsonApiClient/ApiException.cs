@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 
-namespace JsonApiClient
+namespace PTrampert.JsonApiClient
 {
     public class ApiException : Exception
     {

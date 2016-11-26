@@ -8,7 +8,7 @@ using Newtonsoft.Json.Serialization;
 using System.Threading.Tasks;
 using System.Reflection;
 
-namespace JsonApiClient
+namespace PTrampert.JsonApiClient
 {
     public class ApiClient : IApiClient
     {
