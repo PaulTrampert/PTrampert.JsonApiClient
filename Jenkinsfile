@@ -1,4 +1,4 @@
 nugetPipeline {
-	project = 'JsonApiClient'
+	project = 'PTrampert.JsonApiClient'
 	isOpenSource = true
 }
