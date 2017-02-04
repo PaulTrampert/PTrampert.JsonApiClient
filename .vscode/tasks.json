@@ -1,0 +1,25 @@
+{
+    "version": "0.1.0",
+    "command": "dotnet",
+    "isShellCommand": true,
+    "args": [],
+    "tasks": [
+        {
+            "taskName": "build",
+            "args": [
+                "${workspaceRoot}\\PTrampert.JsonApiClient.sln"
+            ],
+            "isBuildCommand": true,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "test",
+            "args": [
+                "${workspaceRoot}\\PTrampert.JsonApiClient.Test\\PTrampert.JsonApiClient.Test.csproj"
+            ],
+            "isBuildCommand": false,
+            "isTestCommand": true,
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
