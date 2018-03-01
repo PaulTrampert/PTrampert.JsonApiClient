@@ -12,10 +12,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>9.0.1</Version>
+      <Version>11.0.1</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
-      <Version>4.3.0</Version>
+      <Version>4.3.3</Version>
     </PackageReference>
   </ItemGroup>
 </Project>
