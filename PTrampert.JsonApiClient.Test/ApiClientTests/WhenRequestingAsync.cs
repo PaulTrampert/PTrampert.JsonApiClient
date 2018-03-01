@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Xunit;
+using NUnit.Framework;
 
 namespace PTrampert.JsonApiClient.Test.ApiClientTests
 {
+    [TestFixture]
     public class WhenRequestingAsync
     {
         public TestHttpMessageHandler HttpHandler { get; set; }
         public HttpResponseMessage Response { get; set; }
         public ApiClient Subject { get; set; }
 
-        public WhenRequestingAsync()
+        [SetUp]
+        public void Setup()
         {
             HttpHandler = new TestHttpMessageHandler();
 
@@ -25,22 +28,29 @@ namespace PTrampert.JsonApiClient.Test.ApiClientTests
             Subject = new ApiClient(httpClient);
         }
 
-        [Fact]
+        [Test]
         public async Task ItSendsTheRequest()
         {
             var result = await Subject.RequestAsync<object>(HttpMethod.Get, "some/uri");
-            Assert.Equal(HttpHandler.LastRequest.Method, HttpMethod.Get);
-            Assert.Equal(HttpHandler.LastRequest.RequestUri, new Uri("http://localhost/someuri/some/uri"));
+            Assert.AreEqual(HttpHandler.LastRequest.Method, HttpMethod.Get);
+            Assert.AreEqual(HttpHandler.LastRequest.RequestUri, new Uri("http://localhost/someuri/some/uri"));
         }
 
-        [Fact]
+        [Test]
+        public async Task ItAppendsQueryDataToTheUri()
+        {
+            var result = await Subject.RequestAsync<object>(HttpMethod.Get, "some/uri", new[] { new KeyValuePair<string, string>("hi", "there"), new KeyValuePair<string, string>("ho", "there") });
+            Assert.AreEqual(HttpHandler.LastRequest.RequestUri, new Uri("http://localhost/someuri/some/uri?hi=there&ho=there"));
+        }
+
+        [Test]
         public async Task ItDeserializesTheContent()
         {
             var result = await Subject.RequestAsync<dynamic>(HttpMethod.Get, "some/uri");
-            Assert.Equal(result.Data.something.ToString(), "good");
+            Assert.AreEqual(result.Data.something.ToString(), "good");
         }
 
-        [Fact]
+        [Test]
         public async Task NoContentDoesntCauseException()
         {
             HttpHandler.FakeResponse.Content = null;
@@ -49,12 +59,12 @@ namespace PTrampert.JsonApiClient.Test.ApiClientTests
             Assert.Null(result.Data);
         }
 
-        [Fact]
+        [Test]
         public async Task NonSuccessStatusCodeThrowsApiException()
         {
             HttpHandler.FakeResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
-            var exception = await Assert.ThrowsAsync<ApiException>(async () => await Subject.RequestAsync<dynamic>(HttpMethod.Get, "some/uri"));
-            Assert.Same(HttpHandler.FakeResponse, exception.Response);
+            var exception = Assert.ThrowsAsync<ApiException>(async () => await Subject.RequestAsync<dynamic>(HttpMethod.Get, "some/uri"));
+            Assert.AreSame(HttpHandler.FakeResponse, exception.Response);
         }
     }
 }
