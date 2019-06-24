@@ -7,7 +7,6 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright 2016 (c) Paul Trampert.</Copyright>
     <PackageTags>HTTP JSON API</PackageTags>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/PaulTrampert/JsonApiClient/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/PaulTrampert/JsonApiClient</PackageProjectUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
