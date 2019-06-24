@@ -1,14 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
-    <VersionPrefix>1.0.1</VersionPrefix>
     <Authors>Paul Trampert</Authors>
     <Description>Simple library for interacting with JSON+HTTP based api's.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright 2016 (c) Paul Trampert.</Copyright>
     <PackageTags>HTTP JSON API</PackageTags>
     <PackageLicenseUrl>https://raw.githubusercontent.com/PaulTrampert/JsonApiClient/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/PaulTrampert/JsonApiClient</PackageProjectUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
